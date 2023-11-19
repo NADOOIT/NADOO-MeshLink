@@ -1,53 +1,38 @@
 ![2182c2bc-44a0-422c-a9e1-ff37c9a79908](https://github.com/NADOOITChristophBa/DyP2PNM/assets/106314951/1a4a8ad6-1a5f-4ed6-9f0e-88918d5f6a04)
-# Dynamic P2P Network Manager (DyP2PNM)
+# NADOO MeshLink
 
 ## Project Description
-
-DyP2PNM is a dynamic Peer-to-Peer (P2P) network manager enabling a VPN-like environment. It facilitates robust network connectivity amid changing IPs and network conditions, allows hosting private services, and ensures secure, private intra-network communication.
+NADOO MeshLink is an advanced Peer-to-Peer (P2P) network management system designed to revolutionize data sharing and connectivity. This dynamic system not only enables robust network connectivity amid changing IP addresses and network conditions but also introduces an innovative approach to decentralized data transfer and resource optimization.
 
 ### Key Features
-
-- **Dynamic IP Management:** Automatically updates and redistributes IP addresses among peers for continuous connectivity.
-- **VPN-like Network Overlay:** Creates a private network overlay, enabling secure communication within the P2P network.
-- **Selective Service Accessibility:** Hosts internal services like web servers, accessible only within the network.
-- **Robust Connection Recovery:** Restores connections efficiently after disruptions or offline periods.
-- **Decentralized Infrastructure:** Offers a decentralized solution for network management, avoiding central servers.
-- **Enhanced Security and Privacy:** Ensures communication security within the network, similar to VPNs.
+- **Dynamic IP Management:** Seamlessly handles changing IP addresses among peers, ensuring continuous connectivity in a fluid network environment.
+- **Localized Data Exchange:** Enables efficient, high-speed data transfer between nearby devices, reducing reliance on internet bandwidth for large file distributions.
+- **Distributed Content Delivery:** Optimizes the delivery of large-scale content (e.g., software updates) by leveraging the collective storage and bandwidth of network nodes.
+- **Device-to-Device (D2D) Connectivity:** Facilitates direct Wi-Fi connections between devices for localized, high-speed data exchange.
+- **VPN-like Network Overlay:** Creates a private, secure network overlay within the P2P network, mirroring VPN functionalities for secure, intra-network communication.
+- **Selective Service Accessibility:** Hosts and accesses internal services like web servers exclusively within the network, enhancing privacy and security.
+- **Robust Connection Recovery:** Efficiently restores network connections following disruptions or offline periods.
+- **Decentralized Infrastructure:** Employs a decentralized approach to network management, eliminating reliance on central servers and enhancing scalability.
+- **Enhanced Security and Privacy:** Implements advanced encryption and security protocols to safeguard communications within the network.
 
 ### Technology Stack
-
 - **Programming Language:** Python
-- **Network Communication:** Python's socket programming, STUN/TURN protocols
-- **Security:** TLS/SSL encryption
-- **Data Storage:** Local data management for network information
-
-### Getting Started
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/NADOOITChristophBa/dyp2pnm.git
-   
-### Install Dependencies
-
-- Ensure Python is installed on your system.
-- Install required Python packages.
-
-### Running the Application
-
-- Instructions on setup and operation.
+- **Network Communication:** Python's socket programming, STUN/TURN protocols, ZeroMQ for inter-process communications, and libp2p (Go implementation) for the core P2P networking.
+- **Security:** TLS/SSL encryption, with additional layers of security for D2D communications.
+- **Data Storage:** Localized data caching and management for efficient content distribution and decentralized storage.
 
 ### Contributing
-
-Contributions to DyP2PNM are welcome. Please see `CONTRIBUTING.md` for how to contribute.
+We welcome contributions to NADOO MeshLink. For guidelines on how to contribute, please refer to `CONTRIBUTING.md`.
 
 ### License
-
-This project is under the [MIT License](LICENSE.md).
+NADOO MeshLink is licensed under the AGPL-3.0 License.
 
 ### Acknowledgments
-
-Thanks to contributors and supporters of this project.
+Special thanks to all contributors and supporters who have made this project possible.
 
 ### Future Enhancements
+- Further advancements in distributed computing capabilities.
+- Enhanced algorithms for intelligent data segmentation and distribution.
+- Expanded D2D communication features for broader device compatibility.
 
-Plans for advanced encryption, improved IP management, and more VPN features.
+NADOO MeshLink represents a leap forward in P2P network technology, offering a scalable, efficient, and secure way to manage network connectivity and data distribution. This project is poised to make significant contributions to the way we handle networked communication and data sharing.
