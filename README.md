@@ -16,10 +16,11 @@ NADOO MeshLink is an advanced Peer-to-Peer (P2P) network management system desig
 - **Enhanced Security and Privacy:** Implements advanced encryption and security protocols to safeguard communications within the network.
 
 ### Technology Stack
-- **Programming Language:** Python
-- **Network Communication:** Python's socket programming, STUN/TURN protocols, ZeroMQ for inter-process communications, and libp2p (Go implementation) for the core P2P networking.
-- **Security:** TLS/SSL encryption, with additional layers of security for D2D communications.
-- **Data Storage:** Localized data caching and management for efficient content distribution and decentralized storage.
+- **Programming Language:** Initially using Python, with a planned transition to Mojo for enhanced performance and scalability. This shift will enable running code from all languages supported by ZeroMQ, with efforts to add more language compatibility as needed.
+- **Network Communication:** Python's socket programming, STUN/TURN protocols, ZeroMQ for inter-process communications, and libp2p (Go implementation) for the core P2P networking. The transition to Mojo will include adaptations to these communication methods, maintaining and expanding language interoperability.
+- **Security:** TLS/SSL encryption, with additional layers of security for D2D communications. Security protocols will be adapted and maintained during the transition to Mojo and the integration of additional programming languages.
+- **Data Storage:** Localized data caching and management for efficient content distribution and decentralized storage, with future enhancements in data handling with Mojo and support for multiple programming languages.
+
 
 ### Contributing
 We welcome contributions to NADOO MeshLink. For guidelines on how to contribute, please refer to `CONTRIBUTING.md`.
