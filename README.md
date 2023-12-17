@@ -21,6 +21,7 @@ NADOO MeshLink is an innovative broker process designed for advanced connectivit
 - **Broker Design**: MeshLink's architecture as a broker includes P2P connections and application message handling.
 - **Interoperability**: ZeroMQ enables MeshLink to communicate with applications in various programming languages.
 - **Flowchart**:
+ 
 ```mermaid
 flowchart TB
     %% Nodes
@@ -82,7 +83,7 @@ flowchart TB
     TBP -->|Return Result| MB
     GP -->|Return Result| MB
     MB -->|Return Result| UA
-
+```
 
 ## Technology Stack
 - **Programming Language**: rimarily Go, with support for various languages via ZeroMQ.
