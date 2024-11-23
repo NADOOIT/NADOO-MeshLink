@@ -1,117 +1,194 @@
-![2182c2bc-44a0-422c-a9e1-ff37c9a79908](https://github.com/NADOOITChristophBa/DyP2PNM/assets/106314951/1a4a8ad6-1a5f-4ed6-9f0e-88918d5f6a04)
+# NADOO-MeshLink
 
-# NADOO MeshLink
+A powerful P2P networking plugin for NADOO Framework applications, built with libp2p and ZeroMQ.
 
-## Introduction
-NADOO MeshLink is an innovative broker process designed for advanced connectivity in decentralized Peer-to-Peer (P2P) networks. It leverages Go, libp2p, and ZeroMQ to facilitate versatile interactions across various programming languages and platforms.
+## Features
 
-## Core Functionality
-- **Primary Role**: Serves as a dynamic broker, managing P2P network connectivity and inter-process communication.
-- **Process Lifecycle**: Operates continuously, adapting to network changes and application requests.
+- **P2P Communication**: Direct peer-to-peer communication using libp2p
+- **Topic-based Pub/Sub**: Advanced publish/subscribe messaging system
+- **Network Management**: Comprehensive peer and network statistics
+- **Framework Integration**: Seamless integration with NADOO Framework
+- **Cross-Language**: Go backend with Python interface
+- **Async Support**: Full async/await support in Python
 
-## Key Features
-1. **Dynamic P2P Communication**: Manages real-time communication within diverse P2P networks.
-2. **Inter-Process Communication via ZeroMQ**: Offers language-agnostic communication between applications and the MeshLink broker.
-3. **Local and Remote Function Execution**: Dynamically decides and routes function calls for local or remote execution.
-4. **Service Management**: Dynamically manages local services, starting or stopping them as needed.
-5. **Scalable Architecture**: Designed for scalability, handling numerous concurrent function calls and network nodes.
-6. **Security and Privacy**: Ensures secure communication and data handling.
+## Installation
 
-## Architecture
-- **Broker Design**: MeshLink's architecture as a broker includes P2P connections and application message handling.
-- **Interoperability**: ZeroMQ enables MeshLink to communicate with applications in various programming languages.
-- **Flowchart**:
- 
-```mermaid
-flowchart TB
-    %% Nodes
-    UA[User Application]
-    MB[MeshLink Broker]
-    FLT[Function Lookup Table]
-
-    %% Flow
-    UA -->|Function Call| MB
-    MB -->|Check Function| FLT
-
-    %% Local Execution
-    subgraph LocalExecution
-        direction TB
-        LS{Local Service Running?}
-        LFE[Execute Function Locally]
-        LSM[Start Local Service]
-        BIU[Background Install/Update]
-    end
-
-    %% Business Network
-    subgraph BusinessNetwork
-        direction TB
-        BEN[Execute in Business Network]
-        BPN[Business P2P Network]
-    end
-
-    %% Trusted Business Network
-    subgraph TrustedBusinessesNetwork
-        direction TB
-        TBN[Execute in Trusted Business Network]
-        TBP[Trusted Business P2P Network]
-    end
-
-    %% Global P2P Network
-    subgraph GlobalP2PNetwork
-        direction TB
-        GPN[Execute in Global P2P Network]
-        GP[Global P2P Network]
-    end
-
-    %% Local Function Flow
-    FLT -- Local Function --> LS
-    LS -- Yes --> LFE
-    LS -- No --> LSM
-    LSM --> BIU
-    BIU --> LFE
-
-    %% Remote Function Flow
-    FLT -- Remote Function --> DEC{Determine Execution Context}
-    DEC -->|Only Local| FNE[Function Not Executable]
-    DEC -->|In Business Network| BEN
-    DEC -->|Trusted Businesses| TBN
-    DEC -->|Anyone| GPN
-
-    %% Return Results
-    LFE -->|Return Result| MB
-    BPN -->|Return Result| MB
-    TBP -->|Return Result| MB
-    GP -->|Return Result| MB
-    MB -->|Return Result| UA
+```bash
+poetry add git+https://github.com/NADOOITChristophBa/NADOO-MeshLink.git
 ```
 
-## Technology Stack
-- **Programming Language**: rimarily Go, with support for various languages via ZeroMQ.
-- **Network Communication**: libp2p for P2P networking and ZeroMQ for inter-process communication.
+## Quick Installation
+
+One-command installation (macOS):
+```bash
+curl -sSL https://raw.githubusercontent.com/NADOOITChristophBa/NADOO-MeshLink/main/setup.sh | bash
+```
+
+This will automatically:
+1. Install required dependencies (Go, Poetry, ZeroMQ)
+2. Build the Go binary
+3. Install the Python package
+4. Set up the development environment
+
+For manual installation or other operating systems, see [Manual Installation](#manual-installation).
+
+## Quick Start
+
+```python
+from nadoo_framework import App
+
+async def main():
+    # Create NADOO app
+    app = App("your-app-name")
+    
+    # Get MeshLink service
+    meshlink = app.get_service("meshlink")
+    
+    # Start the app
+    await app.start()
+    
+    # Connect to a peer
+    await meshlink.connect_to_peer(peer_addr)
+    
+    # Send a broadcast message
+    await meshlink.broadcast_message("Hello P2P World!")
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
+```
+
+## Advanced Features
+
+### Topic-based Messaging
+
+```python
+# Join a topic
+await meshlink.join_topic("my-topic")
+
+# Publish to topic
+await meshlink.publish_to_topic("my-topic", "Hello Topic!")
+```
+
+### Network Management
+
+```python
+# Get network statistics
+stats = await meshlink.get_network_stats()
+print(f"Connected Peers: {stats['connected_peers']}")
+
+# Get detailed peer information
+peers = await meshlink.get_peers()
+for peer in peers:
+    print(f"Peer ID: {peer['id']}")
+    print(f"Latency: {peer['latency']}")
+```
+
+### Peer Management
+
+```python
+# Connect to peer
+await meshlink.connect_to_peer(peer_addr)
+
+# Disconnect from peer
+await meshlink.disconnect_peer(peer_id)
+```
 
 ## Architecture
-- **Broker Design**: Details MeshLink's architecture as a broker, including handling of P2P connections and application messages.
-- **Interoperability**: Explains how ZeroMQ enables MeshLink to interact with applications written in various programming languages.
 
-## Installation and Setup
-- **Installation Guide**: Steps for installing MeshLink.
-- **Configuration Instructions**: Setting up MeshLink for different P2P networks and application environments.
+NADOO-MeshLink uses a hybrid architecture:
+
+1. **Go Backend**: 
+   - libp2p for P2P networking
+   - Efficient peer discovery and routing
+   - Built-in security features
+
+2. **Python Frontend**:
+   - Async service implementation
+   - NADOO Framework integration
+   - Simple, intuitive API
+
+3. **ZeroMQ Bridge**:
+   - Fast inter-process communication
+   - Language-agnostic messaging
+   - Reliable message delivery
+
+## Examples
+
+Check out the `examples` directory for:
+
+- Basic peer-to-peer communication
+- Topic-based messaging system
+- Network monitoring and statistics
+- Complete chat application example
+
+## Development
+
+Requirements:
+- Python 3.8+
+- Go 1.16+
+- Poetry for dependency management
+
+Setup development environment:
+
+```bash
+# Clone repository
+git clone https://github.com/NADOOITChristophBa/NADOO-MeshLink.git
+cd NADOO-MeshLink
+
+# Install dependencies
+poetry install
+
+# Run tests
+poetry run pytest
+```
 
 ## Contributing
-Guidelines for contributing to the NADOO MeshLink project.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
-AGPL-3.0 License.
 
-## Acknowledgments
-Thanks to contributors and supporters.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Future Directions
+## Security
 
-#### Mobile Platform Support
-- **Integration with iOS and Android**: Creating a Go library from MeshLink for native mobile applications.
-- **Using Gomobile**: Building the library with Gomobile for Java/Kotlin (Android) and Swift/Objective-C (iOS) compatibility.
-- **Native App Development**: Developing applications that integrate the MeshLink library for mobile P2P communication.
-- **Considerations for Mobile**: Adhering to mobile OS limitations, App Store and Google Play Store policies, and optimizing for mobile device performance.
+NADOO-MeshLink inherits security features from libp2p:
 
-This initiative will expand MeshLink's capabilities to mobile platforms, making it a comprehensive cross-platform solution for decentralized network management.
+- TLS-based security
+- Peer authentication
+- Message encryption
+- DoS protection
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. **Connection Issues**:
+   - Ensure peer addresses are correct
+   - Check firewall settings
+   - Verify network connectivity
+
+2. **Performance Issues**:
+   - Monitor network statistics
+   - Reduce message frequency if needed
+   - Check system resources
+
+## Roadmap
+
+Future improvements:
+
+1. Enhanced peer discovery
+2. Advanced security features
+3. More message patterns
+4. Performance optimizations
+5. Additional protocol support
+
+## Contact
+
+- GitHub: [@NADOOITChristophBa](https://github.com/NADOOITChristophBa)
+- Project Link: [https://github.com/NADOOITChristophBa/NADOO-MeshLink](https://github.com/NADOOITChristophBa/NADOO-MeshLink)

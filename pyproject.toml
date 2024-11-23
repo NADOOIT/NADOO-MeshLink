@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "nadoo-meshlink"
+version = "0.1.0"
+description = "P2P networking plugin for NADOO Framework"
+authors = ["Christoph Backhaus <christoph.backhaus@nadoo.ai>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "nadoo_meshlink" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pyzmq = "^25.1.1"
+nadoo-framework = "^0.1.0"
+nadoo-migration = "^0.1.0"
+
+[tool.poetry.plugins."nadoo.plugins"]
+meshlink = "nadoo_meshlink:MeshLinkService"
+
+[tool.poetry.plugins."nadoo.migrations"]
+meshlink = "nadoo_meshlink.migrations:MeshLinkMigration"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
